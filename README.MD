@@ -1,5 +1,5 @@
 <h1 style="margin:auto;text-align:center;color:salmon;text-decoration:underline;line-height:30px;letter-spacing:1px;">Javascript Documentation</h1>
-##### In This Documentaion I will try to cover all the topics of javascript,and will try to give details explanation
+<h6> In This Documentaion I will try to cover all the topics of javascript,and will try to give details explanation</h6>
 
 ## Table of Contents
 

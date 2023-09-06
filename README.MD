@@ -29,13 +29,23 @@
     - [Object](#object)
 - [Javascript Functions](#javascript-functions)
     - [Function Declarations](#function-declarations)
+      - [Function definations](#function-definations)
+      - [Function Invocation](#function-invocation)
     - [Function Expressions](#function-expressions)
     - [Arrow Functions](#arrow-functions)
+      - [Syntax](#syntax)
+        - [Shorthand](#shorthand)
+      - [Arguments \& Parameters](#arguments--parameters)
     - [Contstructor Functions](#contstructor-functions)
       - [Properties](#properties)
       - [Methods](#methods)
-      - [Arguments](#arguments)
-      - [Parameter](#parameter)
+    - [Higher Order Function](#higher-order-function)
+    - [Function Closure](#function-closure)
+    - [Callback Function](#callback-function)
+    - [IIFE(immedieately invoked function expression) or Self invoked Function](#iifeimmedieately-invoked-function-expression-or-self-invoked-function)
+    - [Function call() Method](#function-call-method)
+    - [Function Apply() Method](#function-apply-method)
+    - [Function bind() Method](#function-bind-method)
 
 ## JavaScript Variables
 
@@ -230,19 +240,126 @@ In fact maximum this of javascript is object.
 
 A JavaScript function is a block of code designed to perform a particular task.
 
-A JavaScript function is executed when "something" invokes it (calls it). Why Functions? With
-functions you can reuse code
+A JavaScript function is executed when "something" invokes it (calls it).
+
+Why Functions?
+
+With functions you can reuse code
 
 You can write code that can be used many times.
 
-You can use the same code with different arguments, to produce different results. Javascript
-Functions are various types:
+You can use the same code with different arguments, to produce different results.
+
+Javascript Functions are various types:
 
 #### Function Declarations
 
+Function declarations are primarily used to create a function. this type of functions are hoisted to
+window object. that's why you can able to invoke (call a function) a function before the function
+define.
+
+##### Function definations
+
+functions are defined with the `function` keyword. ts call function definition. after define a
+function you can use it by invoke multiple times, when you want to use this function.
+
+```JavaScript
+// this is function definition / or function body
+    function myFunction(){
+        console.log("Hello My Name Is Ripon Miah");
+    }
+
+```
+
+##### Function Invocation
+
+After define a function you can use multiple time by Invoke the function. Invoke means call the
+function. after function name just use `()` to invoke the function
+
+```JavaScript
+//invoke myFunction to get output
+    myFunction()
+// Output : Hello My Name Is Ripon Miah
+
+```
+
+You can invoke the function before define in this declaration type function
+
 #### Function Expressions
 
+functions are stored in a variable at Function Expression type
+
+```javascript
+// this is functions expression
+const myFunction = function () {
+    console.log("Hello JavaScript Developers");
+};
+
+myFunction(); // Output : Hello JavaScript Developers
+```
+
+You can not invoke function before define in this Expression type functions. It Can be called as
+first class function
+
 #### Arrow Functions
+
+Arrow function is a ES6 feature of JavaScript.
+
+##### Syntax
+
+```JavaScript
+    // Arrow Function Syntax
+    const myArrowFunction = () => {
+        console.log("Hello, I'm From Arrow Function");
+    }
+
+    myArrowFunction(); // Output : Hello, I'm From Arrow Function
+```
+
+You can not invoke function before define in this Arrow type functions.
+
+###### Shorthand
+
+If function have a single parameter then you can use this shorthand
+
+```JavaScript
+    const myShortArrowFunc = name => {
+    console.log("hello world");
+    }
+    myShortArrowFunc();// Output : "hello world"
+```
+
+If function have a single line statement then you can use this shorthand
+
+```javascript
+const myShortArrowFunc = () => 10 + 20;
+myShortArrowFunc(); // Output : 30
+```
+
+##### Arguments & Parameters
+
+We can receive various data as argument to make more efficient use of the functions provided and we
+can pass dynamic data to the functions as a parameter
+
+example:
+
+```JavaScript
+/*
+ * in below line we take two argument named
+    name and skill to use dynamically in function like below .
+    this is arguments
+*/
+const myFunc = (name , skill) => {
+    console.log("Hello ! my name is " + name+" and I am " + skill);
+}
+
+//this are the variables we can pass as a parameter
+let name = "Ripon Miah";
+let skill = "Mern Stack Developer";
+
+// here we can pass the parameters as a parameter when we invoke function
+myfunc(name, skill); // Output : Hello ! my name is Ripon Miah and I am Mern Stack Developer
+```
 
 #### Contstructor Functions
 
@@ -250,6 +367,16 @@ Functions are various types:
 
 ##### Methods
 
-##### Arguments
+#### Higher Order Function
 
-##### Parameter
+#### Function Closure
+
+#### Callback Function
+
+#### IIFE(immedieately invoked function expression) or Self invoked Function
+
+#### Function call() Method
+
+#### Function Apply() Method
+
+#### Function bind() Method

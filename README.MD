@@ -43,9 +43,13 @@
     - [Function Closure](#function-closure)
     - [Callback Function](#callback-function)
     - [IIFE(immedieately invoked function expression) or Self invoked Function](#iifeimmedieately-invoked-function-expression-or-self-invoked-function)
+    - [Curring / Curried Function](#curring--curried-function)
     - [Function call() Method](#function-call-method)
     - [Function Apply() Method](#function-apply-method)
     - [Function bind() Method](#function-bind-method)
+- [Asynchronous JavaScript Functions](#asynchronous-javascript-functions)
+    - [Async Await Function](#async-await-function)
+    - [Promise Function](#promise-function)
 
 ## JavaScript Variables
 
@@ -363,20 +367,208 @@ myfunc(name, skill); // Output : Hello ! my name is Ripon Miah and I am Mern Sta
 
 #### Contstructor Functions
 
+constructor function is a group of functions where many functions were constructed.
+
+Constructor function is like a function container where many of functions and variables were
+stored.and when you have to use these function , you need to make an instance of the function by
+`new` keyword.
+
+Example of Constructor function:
+
+```Javascript
+function MyConstructor(){ // Body of a constructor function
+
+// store some properties in the constructor
+this.name = "Ripon Miah";
+this.age = 30;
+
+//Store some methods in the constructor
+this.info(){
+    console.log(`Hi my name is ${this.name}. and I'm ${this.age} years old`);
+}
+
+}
+
+//make a  new instance for use methods and properties of the constructor
+const myConstructor = new MyConstructor
+// Use the properties
+console.log(myConstructor.name) // Output : Ripon Miah
+
+// Use the methods
+console.log(myConstructor.info()) // Output : Hi my name is Ripon Miah . and I'm 30 years old
+
+```
+
 ##### Properties
+
+Properties are like variables.But it use into a Constructor function it's called Properties. it need
+to declare by using `this` keyword.
+
+Example of properties:
+
+```Javascript
+ function MyConstructor(){ // this is the constructor function
+    this.name = "Ripon Miah" // this is the properties
+ }
+```
 
 ##### Methods
 
+methods are like function.But it use into a Constructor function, it's called method. it need to
+declare by using `this` keyword and no need to use `function` keyword.
+
+Example of method:
+
+```Javascript
+ function MyConstructor(){ // this is the constructor function
+    this.info(){ // this is a method
+        console.log("This is a method")
+    }
+ }
+```
+
 #### Higher Order Function
+
+When a function return another function into his body, it's called Higher Order Function.
+
+Example of High Order Function:
+
+```Javascript
+const func1 = () => {
+    console.log("this is  first function");
+};
+const func2 = () => {
+    console.log("this is second function");
+};
+
+function myFunction() { // this function return a function in its body
+    console.log("This function will return a function");
+    return func1();
+}
+
+myFunction();
+
+```
 
 #### Function Closure
 
+When a function return a function in it's body with combined of lexical environment is called
+closure function
+
+Example of Closure Function
+
+```JavaScript
+function myFunction() {
+    // it can't access its closures property
+    let name = "Ripon Miah";
+    let age = 30;
+    function myClosure() {
+        // closure can access his parent functions properties
+        let skill = "Laravel Developer";
+        console.log(`Hi ${name} . Your age is ${age} and your skill is ${skill}`);
+    }
+    myClosure();
+}
+myFunction();
+```
+
 #### Callback Function
 
+Callback function are use to manage operations synchronously, It means its a sequence of functions
+that helps to run a function depending to finish a function. Suppose, You have resturent. A custom
+came to the resturent and order for food, now what what you have to done?
+
+you have multiple task like:
+
+1st: take order
+
+2nd : cooking the food
+
+3rd : serve the food
+
+4rd : All task complete and say Goodbye to Customer
+
+Now think all the task are need to done syncronously.because you can not serve the food before
+cooking or taking an order. So,here is come to the callback. it means it will be call another
+function after completing a function.
+
+Lets see a code example:
+
+```JavaScript
+const orderProcess = () => {
+    const takeOrder = () => {
+        console.log("Taking Order From Customer");
+        const cookingFood = () => {
+            console.log("Cooking Food From Customer");
+            const serveOrder = () => {
+                console.log("Serving Order to Customer");
+                const goodBye = () => {
+                    console.log("Good Bye  and Welcome again");
+                };
+                goodBye();
+            };
+            serveOrder();
+        };
+        cookingFood();
+    };
+    takeOrder();
+};
+
+orderProcess();
+
+```
+
 #### IIFE(immedieately invoked function expression) or Self invoked Function
+
+IIFE function means immediately invoked function expression, somethime we need to make a function
+and immediately invoke the function. these type of functions are called IIFE function
+
+syntax example :
+
+```JavaScript
+(function(){
+    console.log("Hello world")
+})();
+
+```
+
+#### Curring / Curried Function
+
+We can pass a function into another function. and its called curried function.
+
+example as function declaration:
+
+```JavaScript
+function myFunction() {
+    console.log("this is my function");
+    return function myFunction2() {
+        console.log("this is my function2");
+        return function myFunction3() {
+            console.log("this is my function3");
+        };
+    };
+}
+myFunction()()();
+```
+
+Example as Arrow Function
+
+```JavaScript
+    cost myCurried = (a)=>(b)=>(c)=>{
+        console.log(a+b+c)
+    }
+    myCurried(10)(20)(30);// Output : 60
+
+```
 
 #### Function call() Method
 
 #### Function Apply() Method
 
 #### Function bind() Method
+
+## Asynchronous JavaScript Functions
+
+#### Async Await Function
+
+#### Promise Function

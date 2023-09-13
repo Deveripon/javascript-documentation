@@ -63,9 +63,9 @@
         - [Rule-5 : `!` Operator](#rule-5---operator)
         - [Rule-6 : `null` and `undefined`](#rule-6--null-and-undefined)
         - [Rule-7 : `NaN`](#rule-7--nan)
-        - [Rule : 8](#rule--8)
-        - [Rule : 9](#rule--9)
-        - [Rule : 10](#rule--10)
+        - [Rule-8 : `+` operator](#rule-8---operator)
+        - [Rule-9 : Arithmatic Operators](#rule-9--arithmatic-operators)
+        - [Rule-10 : Numaric Calculation( Comparison,Equality,Bitwise ) Operator](#rule-10--numaric-calculation-comparisonequalitybitwise--operator)
 
 ## JavaScript Variables
 
@@ -772,7 +772,7 @@ Example:
     NaN == NaN; // false
 ```
 
-###### Rule : 8
+###### Rule-8 : `+` operator
 
 `+` অপারেটর ব্যাবহার করে যখন আমরা কোন অপারেশন করি তখন যদি দুইটা অপারেন্ড এর ডাটা `Number` টাইপের হয়
 তাহলে সেক্ষেত্রে কোন সমস্যা নেই এবং আমরা আমাদের আশানুরূপ রেজাল্ট পাই। যেমনঃ
@@ -829,7 +829,7 @@ example:
 +"12ebe"; //Output : NaN
 ```
 
-###### Rule : 9
+###### Rule-9 : Arithmatic Operators
 
 শুধুমাত্র `+` অপারেটর এর ক্ষেত্রে উপরের রুলস প্রযোজ্য হবে । বাকি সকল নিউমেরিক ক্যাল্কুলেশন এ ব্যবহৃত
 `Arithmatic Operators : + - * / %` অপারেটর কোন অপারেশন এ থাকলে সেই ডাটা অটোমেটিক `Number` এ কনভার্ট
@@ -846,7 +846,7 @@ true / false ; //Output : Infinity
 5 * 5 ; //Output : 25
 ```
 
-###### Rule : 10
+###### Rule-10 : Numaric Calculation( Comparison,Equality,Bitwise ) Operator
 
 `Equality Operators : == !=` `Bitwise Operators : | ~ ^ & ` `Comparison Operators : < > <= >=` কোন
 অপারেশন এ ব্যাবহার করা হয় তাহলে সাথে সাথে অপারেন্ড গুলো `Number` এ কনভার্ট হয়ে যাবে এবং সেখানে

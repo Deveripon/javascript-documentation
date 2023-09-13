@@ -56,8 +56,16 @@
     - [Types of Conversion or Coercion:](#types-of-conversion-or-coercion)
       - [Explicit conversions](#explicit-conversions)
       - [Implicit conversions](#implicit-conversions)
-        - [Rule: 1](#rule-1)
-        - [Rule : 2](#rule--2)
+        - [Rule-1 : Referance to Boolean](#rule-1--referance-to-boolean)
+        - [Rule-2 : String To Number](#rule-2--string-to-number)
+        - [Rule-3 : Reference to Number](#rule-3--reference-to-number)
+        - [Rule-4 : Boolean To Number](#rule-4--boolean-to-number)
+        - [Rule-5 : `!` Operator](#rule-5---operator)
+        - [Rule-6 : `null` and `undefined`](#rule-6--null-and-undefined)
+        - [Rule-7 : `NaN`](#rule-7--nan)
+        - [Rule : 8](#rule--8)
+        - [Rule : 9](#rule--9)
+        - [Rule : 10](#rule--10)
 
 ## JavaScript Variables
 
@@ -651,7 +659,7 @@ Boolean({})//Output : true
 Which Conversion do javascript automatically that is Implicit conversions. Here is some rules to
 understand that when javascript do this automatic conversions and from which type to which types.
 
-###### Rule: 1
+###### Rule-1 : Referance to Boolean
 
 If any `referance` type value converts to `Boolean` it always returns `true`
 
@@ -664,5 +672,195 @@ Boolean([1, 2, 3, "a", "b", "c"]); //Output: true
 Boolean({ name: "x" }); //Output : true
 ```
 
-###### Rule : 2
-`+` অপারেটর ব্যাবহার করে যখন আমরা কোন অপারেশন করি তখন 
+###### Rule-2 : String To Number
+
+যখন কোন `String` কে `Number` এ কনভার্ট করা হবে তখন যদি `String` এর ভিতরে কোন ভ্যালিড `Number` থাকে
+তাহলে তা `Number` এ কনভার্ট করে আর যদি `String` এর ভিতরে কোন ভ্যালিড `Number` না পাওয়া যায় তাহলে
+সবসময় `NaN` রিটার্ন করে ।
+
+Example :
+
+```Javascript
+    Number("1234"); //Output : 1234
+    Number("abc"); //Output : NaN
+    Number("NaN"); //Output : NaN
+    Number("12abc"); //Output : NaN
+    Number("[]") // Output : NaN
+    Number("[2]"); //Output : NaN
+```
+
+###### Rule-3 : Reference to Number
+
+রেফারেন্স টাইপের ভ্যালুকে `Number` এ কনভার্ট করার সময় শুধুমাত্র `[]` অথবা একটা মাত্র `Number` ভ্যালু
+সম্পন্ন `Array` (`[2]`) কেই `Number` এ কনভার্ট করা যায় । বাকি সকল রেফারেন্স টাইপ ভ্যালু `NaN`
+রিটার্ন করে ।
+
+example:
+
+```JavaScript
+    Number([]); // Output : 0
+    Number([0]) // Output : 0
+    Number([4]) // Output : 4
+    Number([1,2]) // Output : NaN
+    Number({}) // Output : NaN
+    Number({name:"x"}) //Output : NaN
+    Number(["a"]) // Output : NaN
+
+```
+
+###### Rule-4 : Boolean To Number
+
+`Boolean` থেকে `Number` এ কনভার্ট করার ক্ষেত্রে `false == 0` and `true == 1` রিটার্ন করে । Example :
+
+```Javascript
+Number(false); // Output : 0
+Number(true); // Output : 1
+```
+
+###### Rule-5 : `!` Operator
+
+`!` অপারেটর এর একটা মজার ব্যাবহার রয়েছে। একবার `!` অপারেটর ব্যাবহার করলে তা `falsy` ভ্যালু রিটার্ন
+করে এবং দুইবার `!` অপারেটর ব্যবহার করলে তা `truthy` ভ্যালু রিটার্ন করে । Example
+
+```Javascript
+!false ; //Output : true
+!true ; //Output : false
+!!false ; //Output : false
+!!true ; //Output : true
+!2 ; //Output : false
+!!2 ; //Output : true
+!!"abcd" ; //Output : true"
+```
+
+###### Rule-6 : `null` and `undefined`
+
+`null` কে `Number` এ কনভার্ট করা হলে সবসময় `0` রিটার্ন করে এবং `undefined` কে `Number` এ কনভার্ট করা
+হলে সবসময় `NaN` রিটার্ন করে ।
+
+Example:
+
+```JavaScript
+Number(null); //Output : 0;
+Number(undefined); //Output :NaN;
+```
+
+`null` and `undefined` কে একে অপরের সাথে ইকুয়ালিটি কম্পেয়ার করা হলে তারা `true` রিটার্ন করে । কিন্তু
+আর দুনিয়ার কোন কিছুর সাথেই তারা ইকুয়াল না ।
+
+example:
+
+```Javascript
+null == null ; // Output : true
+null == undefined ; // Output : true
+undefined == undefined ; // Output : true
+undefined == null ; // Output : true
+null == false ; // Output : false
+undefined == false ; // Output : false
+```
+
+###### Rule-7 : `NaN`
+
+`NaN` কোনদিনও কোনকিছুর সমান নয়। এমনকি সে নিজেরও সমান না। তাই `NaN` কে কোন কিছুর সাথে ইকুয়ালিটি চেক
+করলে তা সবসময় `false` রিটার্ন করে ।
+
+Example:
+
+```Javascript
+    NaN == false; // false
+    NaN == true; // false
+    NaN == undefined; // false
+    NaN == NaN; // false
+```
+
+###### Rule : 8
+
+`+` অপারেটর ব্যাবহার করে যখন আমরা কোন অপারেশন করি তখন যদি দুইটা অপারেন্ড এর ডাটা `Number` টাইপের হয়
+তাহলে সেক্ষেত্রে কোন সমস্যা নেই এবং আমরা আমাদের আশানুরূপ রেজাল্ট পাই। যেমনঃ
+
+```JavaScript
+    5 + 5 // Output : 10
+    1 + 3 // Output : 4
+```
+
+কিন্তু যদি দুইটা অপারেন্ড এর ডাটা `Number` না হয়ে একটা `String` হয় তাহলেই সেখানে তখন অটোমেটিক
+`Number` ডাটা `String` এ কনভার্ট হয়ে যাবে। কেননা আমরা জানি `+` অপারেটর শুধুমাত্র গাণিতিক হিসেব
+করেনা, বরং `+` অপারেটর কে বাইনারি `+` হিসেবে ব্যাবহার করে দুইটা `String` কে `Concatanation` করা হয়ে
+থাকে । তাই `+` অপারেটর ব্যাবহার করে যখন কোন অপারেশন করা হবে তার ভিতরে যদি কোন একটা ডাটা `String`
+টাইপের হয় তাহলে সে অটামেটিক দুটো ডাটাকেই `String` বানিয়ে ফেলবে ।
+
+example:
+
+```Javascript
+"Bangladesh" + 75 ; //Output : "Bangladesh75"
+75 + "Bangladesh" + 75 ; //Output : "75Bangladesh75
+"34"+ "Sakib" ; //Output : "34Sakib"
+```
+
+তবে এক্ষেত্রে আরও একটা বিষয় মাথায় রাখতে হবে যে, কনভার্সন ফ্লো সবসময় বাম দিক থেকে ডান দিকে যাবে।
+এক্ষেত্রে `Javascript` দুইটা করে অপারেন্ড এর কাজ একাসাথে করবে। যদি এমন হয় যে কোন অপারেশন এ দুইয়ের
+অধিক অপারেন্ড আছে এবং প্রথম দুইটা অপারেন্ড `Number` টাইপের ডাটা আর পরের অপারেন্ড হয়তো `String`
+টাইপের ডাটা ,সেক্ষেত্রে `Javascript` প্রথম দুইটা অপারেন্ড এর কাজ আগে করবে, আর তাতে প্রথমে নাম্বার
+দুইটাকে যোগ করবে আর তিন নাম্বার ডাটা যখন `String` তখন পরের অপারেশন এ গিয়ে দুটোকেই `String` বানিয়ে
+ফেলবে এবং `Concatanation` করে ফেলবে । example:
+
+```Javascript
+34 + 3 +"Sakib"+ 4 + 4 ; //Output : "37Sakib44"
+//lets explain this example
+
+//(34+3)+"Sakib"+ 4 + 4 ;
+//37+"Sakib"+ 4 + 4 ;
+//(37+"Sakib")+ 4 + 4;
+//"37Sakib" + 4 + 4
+//("37Sakib"+4)+4
+//"37Sakib4"+4
+//37Sakib44
+```
+
+আবার অপারেন্ড যদি একটা হয়,আর `+` অপারেটর যদি কোন অপারেন্ড এর সামনে বসে তাহলে অপারেন্ড যেই ডাটা
+টাইপের এ হোক না কেন তা `Number` টাইপের ডাটায় কনভার্ট হয়ে যাবে । কেননা `+` অপারেটর তখন ইউনারি `+`
+অপারেটর হিসেবে কাজ করবে । এক্ষেত্র যদি কোন ভ্যালিড নাম্বার না পাওয়া যায় তাহলে `Javascript` `NaN`
+রিটার্ন করবে। example :
+
+```Javascript
++false; //Output : 0
++true; //Output : 1
++"124"; //Output : 124
++"undefined"; //Output : NaN
++"12ebe"; //Output : NaN
+```
+
+###### Rule : 9
+
+শুধুমাত্র `+` অপারেটর এর ক্ষেত্রে উপরের রুলস প্রযোজ্য হবে । বাকি সকল নিউমেরিক ক্যাল্কুলেশন এ ব্যবহৃত
+`Arithmatic Operators : + - * / %` অপারেটর কোন অপারেশন এ থাকলে সেই ডাটা অটোমেটিক `Number` এ কনভার্ট
+হয়ে যাবে এবং তা ক্যাল্কুলেশন করে `Number` আউটপুট দিবে । Example :
+
+```Javascript
+true * 5 ; //Output : 5
+false / 5 ; //Output : 0
+0 / 0 ; // NaN
+false / false ; // Output : NaN
+5 / 0 ; //Output : Infinity
+true / false ; //Output : Infinity
+"abc" - 5 ; //Output : -5
+5 * 5 ; //Output : 25
+```
+
+###### Rule : 10
+
+`Equality Operators : == !=` `Bitwise Operators : | ~ ^ & ` `Comparison Operators : < > <= >=` কোন
+অপারেশন এ ব্যাবহার করা হয় তাহলে সাথে সাথে অপারেন্ড গুলো `Number` এ কনভার্ট হয়ে যাবে এবং সেখানে
+`Boolean` ভ্যালু রিটার্ন করে।
+
+Example :
+
+```Javascript
+true == 1; //Output : true
+false == 0; //Output : false
+[] == 0 ;// Output : true
+[2] == 0 ;// Output : false
+[2] == 2 ;// Output : true
+[1,2] == 12; // Output : false
+[2] > 2 ; //Output : false
+[2] != 2 ; //Output : false
+```

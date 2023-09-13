@@ -50,6 +50,14 @@
 - [Asynchronous JavaScript Functions](#asynchronous-javascript-functions)
     - [Async Await Function](#async-await-function)
     - [Promise Function](#promise-function)
+- [Type Conversion and Coercion of JavaScript](#type-conversion-and-coercion-of-javascript)
+    - [What is type conversion ?](#what-is-type-conversion-)
+    - [What is Coercion ?](#what-is-coercion-)
+    - [Types of Conversion or Coercion:](#types-of-conversion-or-coercion)
+      - [Explicit conversions](#explicit-conversions)
+      - [Implicit conversions](#implicit-conversions)
+        - [Rule: 1](#rule-1)
+        - [Rule : 2](#rule--2)
 
 ## JavaScript Variables
 
@@ -572,3 +580,89 @@ Example as Arrow Function
 #### Async Await Function
 
 #### Promise Function
+
+## Type Conversion and Coercion of JavaScript
+
+#### What is type conversion ?
+
+In JavaScript programming someting we need to change data type to complete task or complete any
+calculation. Then we change the data type from one data type to another data type. this is called
+type conversion.
+
+#### What is Coercion ?
+
+Sometime javascript can change data type automatically to complete task. this is called coercion.
+So, In javascript something that can change data type automatically to complete task is called
+coercion. When two operend types are different in any operation,their will be Coercion.
+
+#### Types of Conversion or Coercion:
+
+Type Conversion or Coercion is two types:
+
+##### Explicit conversions
+
+when we directly change data types by using javascript built in methods that is Explicit
+conversions.
+
+Example:
+
+```JavaScript
+// String conversion
+//================================
+String(123) //Output: "123"
+String("abc") //Output: "abc"
+String(true) //Output: "true"
+String(false) //Output:"false"
+String(null) //Output: "null"
+String(undefined) //Output: "undefined"
+String({}) //Output: "[object Object]"
+String(function(){}) //Output: "function(){}"
+
+//Number Conversion
+//==================================
+Number(null) //Output: 0
+Number(1) //Output: 1
+Number("1234") //Output: 1234
+Number(false) //Output: 0
+Number(true) // Output : 1
+Number(undefined) //Output: NaN
+Number(12abc4) //Output: NaN
+
+//Boolean Conversion
+//===================================
+Boolean(false) //Output: false
+Boolean(undefined) //Output : false
+Boolean(0) //Output : false
+Boolean(null) //Output : false
+Boolean("") //Output : false
+Boolean(NaN) //Output : false
+
+Boolean(true) //Output : true
+Boolean(1) //Output : true
+Boolean("abc") //Output : true
+Boolean(123) //Output : true
+Boolean([]) //Output : true
+Boolean({})//Output : true
+
+```
+
+##### Implicit conversions
+
+Which Conversion do javascript automatically that is Implicit conversions. Here is some rules to
+understand that when javascript do this automatic conversions and from which type to which types.
+
+###### Rule: 1
+
+If any `referance` type value converts to `Boolean` it always returns `true`
+
+Example:
+
+```javascript
+Boolean([]); // Output: true
+Boolean({}); // Output: true
+Boolean([1, 2, 3, "a", "b", "c"]); //Output: true
+Boolean({ name: "x" }); //Output : true
+```
+
+###### Rule : 2
+`+` অপারেটর ব্যাবহার করে যখন আমরা কোন অপারেশন করি তখন 
